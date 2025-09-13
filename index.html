@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Огромная HTML-страница</title>
+    <style>
+        /* Общие стили */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Заголовки */
+        h1, h2, h3, h4 {
+            margin-bottom: 20px;
+            color: #2c3e50;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            font-size: 3rem;
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(to right, #3498db, #2c3e50);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            border-bottom: 3px solid #3498db;
+            margin-bottom: 30px;
+        }
+        
+        h2 {
+            font-size: 2.2rem;
+            padding: 15px;
+            background-color: rgba(52, 152, 219, 0.1);
+            border-left: 5px solid #3498db;
+            margin-top: 40px;
+        }
+        
+        h3 {
+            font-size: 1.8rem;
+            color: #3498db;
+            margin-top: 30px;
+        }
+        
+        h4 {
+            font-size: 1.4rem;
+            color: #2c3e50;
+            margin-top: 25px;
+        }
+        
+        /* Параграфы */
+        p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            text-align: justify;
+        }
+        
+        /* Навигация */
+        nav {
+            background: linear-gradient(90deg, #2c3e50, #3498db);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            position: sticky;
+            top: 10px;
+            z-index: 100;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: space-around;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        nav li {
+            margin: 10px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Секции */
+        section {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        section:hover {
+            transform: translateY(-5px);
+        }
+        
+        /* Таблицы */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+        
+        tr:nth-of-type(even) {
+            background-color: #f3f3f3;
+        }
+        
+        tr:hover {
+            background-color: rgba(52, 152, 219, 0.1);
+        }
+        
+        /* Формы */
+        form {
+            background: #f9f9f9;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: background 0.3s;
+        }
+        
+        button:hover {
+            background: #2c3e50;
+        }
+        
+        /* Карточки */
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .card {
+            flex: 1 0 300px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .card-content {
+            padding: 20px;
+        }
+        
+        /* Футер */
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: #2c3e50;
+            color: white;
+            border-radius: 10px;
+            margin-top: 40px;
+        }
+        
+        /* Анимации */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .animated {
+            animation: fadeIn 1s ease-in-out;
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .card {
+                flex: 1 0 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Добро пожаловать на огромную HTML-страницу!</h1>
+            <p>Это демонстрационная страница с большим количеством HTML-элементов, стилей и функциональности. Прокрутите вниз, чтобы увидеть различные разделы.</p>
+        </header>
+        
+        <nav>
+            <ul>
+                <li><a href="#section1">Раздел 1</a></li>
+                <li><a href="#section2">Раздел 2</a></li>
+                <li><a href="#section3">Раздел 3</a></li>
+                <li><a href="#section4">Раздел 4</a></li>
+                <li><a href="#section5">Раздел 5</a></li>
+                <li><a href="#section6">Раздел 6</a></li>
+            </ul>
+        </nav>
+        
+        <section id="section1" class="animated">
+            <h2>Раздел 1: Введение в HTML</h2>
+            <p>HTML (HyperText Markup Language) является стандартным языком разметки для создания веб-страниц. Он описывает структуру веб-страницы и состоит из серии элементов, которые сообщают браузеру, как отображать контент.</p>
+            
+            <h3>История HTML</h3>
+            <p>HTML был создан Тимом Бернерсом-Ли в 1991 году. Первая версия HTML содержала всего 18 элементов. С тех пор HTML претерпел значительные изменения и evolved через различные версии, с последней версией HTML5.</p>
+            
+            <h3>Основы HTML</h3>
+            <p>HTML документ состоит из дерева элементов. Каждый элемент обозначается тегами и может иметь атрибуты, которые определяют его свойства и поведение.</p>
+            
+            <div class="card-container">
+                <div class="card">
+                    <div class="card-content">
+                        <h4>Структура HTML</h4>
+                        <p>Каждый HTML-документ начинается с декларации типа документа &lt;!DOCTYPE html&gt;, за которой следует элемент &lt;html&gt;, содержащий &lt;head&gt; и &lt;body&gt;.</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-content">
+                        <h4>HTML Элементы</h4>
+                        <p>Элементы HTML являются строительными блоками веб-страниц. Они могут содержать текст, другие элементы или быть пустыми.</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-content">
+                        <h4>Атрибуты</h4>
+                        <p>Атрибуты предоставляют дополнительную информацию об элементах и определяются в открывающем теге в формате name="value".</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="section2" class="animated">
+            <h2>Раздел 2: Таблицы в HTML</h2>
+            <p>Таблицы в HTML используются для организации данных в строки и столбцы. Они создаются с помощью тега &lt;table&gt; и содержат строки (&lt;tr&gt;), заголовки (&lt;th&gt;) и ячейки данных (&lt;td&gt;).</p>
+            
+            <h3>Пример сложной таблицы</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Продукт</th>
+                        <th>Описание</th>
+                        <th>Цена</th>
+                        <th>Количество</th>
+                        <th>Итого</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Ноутбук</td>
+                        <td>Мощный игровой ноутбук с SSD</td>
+                        <td>1500$</td>
+                        <td>1</td>
+                        <td>1500$</td>
+                    </tr>
+                    <tr>
+                        <td>Мышь</td>
+                        <td>Беспроводная gaming мышь</td>
+                        <td>80$</td>
+                        <td>2</td>
+                        <td>160$</td>
+                    </tr>
+                    <tr>
+                        <td>Клавиатура</td>
+                        <td>Механическая клавиатура с RGB</td>
+                        <td>120$</td>
+                        <td>1</td>
+                        <td>120$</td>
+                    </tr>
+                    <tr>
+                        <td>Монитор</td>
+                        <td>27-дюймовый 4K монитор</td>
+                        <td>400$</td>
+                        <td>2</td>
+                        <td>800$</td>
+                    </tr>
+                    <tr>
+                        <td>Наушники</td>
+                        <td>Беспроводные наушники с шумоподавлением</td>
+                        <td>250$</td>
+                        <td>1</td>
+                        <td>250$</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="4" style="text-align: right; font-weight: bold;">Общая сумма:</td>
+                        <td style="font-weight: bold;">2830$</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </section>
+        
+        <section id="section3" class="animated">
+            <h2>Раздел 3: Формы и ввод данных</h2>
+            <p>HTML формы используются для сбора пользовательского ввода. Они содержат различные элементы управления, такие как текстовые поля, флажки, переключатели, кнопки и многое другое.</p>
+            
+            <form>
+                <h3>Форма регистрации</h3>
+                
+                <div class="form-group">
+                    <label for="name">Полное имя:</label>
+                    <input type="text" id="name" name="name" placeholder="Введите ваше имя">
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email адрес:</label>
+                    <input type="email" id="email" name="email" placeholder="Введите ваш email">
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Пароль:</label>
+                    <input type="password" id="password" name="password" placeholder="Придумайте пароль">
+                </div>
+                
+                <div class="form-group">
+                    <label for="birthdate">Дата рождения:</label>
+                    <input type="date" id="birthdate" name="birthdate">
+                </div>
+                
+                <div class="form-group">
+                    <label for="country">Страна:</label>
+                    <select id="country" name="country">
+                        <option value="">Выберите страну</option>
+                        <option value="ru">Россия</option>
+                        <option value="us">США</option>
+                        <option value="de">Германия</option>
+                        <option value="fr">Франция</option>
+                        <option value="jp">Япония</option>
+                        <option value="other">Другая</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Пол:</label>
+                    <div>
+                        <input type="radio" id="male" name="gender" value="male">
+                        <label for="male" style="display: inline;">Мужской</label>
+                        
+                        <input type="radio" id="female" name="gender" value="female">
+                        <label for="female" style="display: inline;">Женский</label>
+                        
+                        <input type="radio" id="other" name="gender" value="other">
+                        <label for="other" style="display: inline;">Другой</label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Интересы:</label>
+                    <div>
+                        <input type="checkbox" id="tech" name="interests" value="tech">
+                        <label for="tech" style="display: inline;">Технологии</label>
+                        
+                        <input type="checkbox" id="sports" name="interests" value="sports">
+                        <label for="sports" style="display: inline;">Спорт</label>
+                        
+                        <input type="checkbox" id="music" name="interests" value="music">
+                        <label for="music" style="display: inline;">Музыка</label>
+                        
+                        <input type="checkbox" id="books" name="interests" value="books">
+                        <label for="books" style="display: inline;">Книги</label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="bio">О себе:</label>
+                    <textarea id="bio" name="bio" rows="4" placeholder="Расскажите немного о себе"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="avatar">Загрузите аватар:</label>
+                    <input type="file" id="avatar" name="avatar">
+                </div>
+                
+                <button type="submit">Зарегистрироваться</button>
+            </form>
+        </section>
+        
+        <section id="section4" class="animated">
+            <h2>Раздел 4: CSS Стилизация</h2>
+            <p>CSS (Cascading Style Sheets) используется для стилизации и компоновки веб-страниц. Он позволяет контролировать цвет, шрифты,间距, расположение элементов и многое другое.</p>
+            
+            <h3>Типы селекторов CSS</h3>
+            <p>Селекторы определяют, к каким элементам HTML применяются стили. Существуют различные типы селекторов:</p>
+            
+            <div class="card-container">
+                <div class="card">
+                    <div class="card-content">
+                        <h4>Селекторы элементов</h4>
+                        <p>Выбирают все элементы указанного типа. Например: p { color: red; }</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-content">
+                        <h4>Селекторы классов</h4>
+                        <p>Выбирают элементы с указанным классом. Например: .my-class { font-size: 16px; }</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-content">
+                        <h4>Селекторы ID</h4>
+                        <p>Выбирают элемент с указанным ID. Например: #my-id { background: blue; }</p>
+                    </div>
+                </div>
+            </div>
+            
+            <h3>CSS Box Model</h3>
+            <p>Модель box - это фундаментальная концепция CSS, которая описывает, как элементы отображаются на странице. Она состоит из content, padding, border и margin.</p>
+            
+            <h3>Flexbox и Grid</h3>
+            <p>Современные методы компоновки, такие как Flexbox и CSS Grid, предоставляют мощные возможности для создания адаптивных макетов.</p>
+        </section>
+        
+        <section id="section5" class="animated">
+            <h2>Раздел 5: JavaScript Основы</h2>
+            <p>JavaScript - это язык программирования, который позволяет создавать динамически обновляемый контент, анимировать изображения, управлять мультимедиа и многое другое.</p>
+            
+            <h3>Переменные и типы данных</h3>
+            <p>В JavaScript есть три способа объявления переменных: var, let и const. JavaScript поддерживает различные типы данных, включая числа, строки, булевы значения, объекты и т.д.</p>
+            
+            <h3>Функции</h3>
+            <p>Функции являются одним из фундаментальных строительных блоков в JavaScript. Функция - это процедура, предназначенная для выполнения определенной задачи.</p>
+            
+            <h3>DOM Manipulation</h3>
+            <p>Объектная модель документа (DOM) представляет структуру документа и позволяет программам и скриптам динамически обновлять содержание, структуру и стиль документа.</p>
+            
+            <div class="card-container">
+                <div class="card">
+                    <div class="card-content">
+                        <h4>Выбор элементов</h4>
+                        <p>Методы document.getElementById(), document.querySelector() и другие используются для выбора элементов DOM.</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-content">
+                        <h4>Изменение контента</h4>
+                        <p>Свойства innerHTML, textContent и innerText позволяют изменять содержимое элементов.</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-content">
+                        <h4>Обработка событий</h4>
+                        <p>Метод addEventListener() позволяет регистрировать обработчики событий на элементах.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="section6" class="animated">
+            <h2>Раздел 6: Дополнительная информация</h2>
+            <p>В этом разделе представлена дополнительная информация о веб-разработке и связанных технологиях.</p>
+            
+            <h3>Дополнительные ресурсы</h3>
+            <p>Для дальнейшего изучения веб-разработки рекомендуется ознакомиться со следующими ресурсами:</p>
+            
+            <ul style="margin-left: 30px; margin-bottom: 20px;">
+                <li>MDN Web Docs - обширная документация по веб-технологиям</li>
+                <li>W3Schools - учебники и справочные материалы</li>
+                <li>freeCodeCamp - интерактивная платформа для обучения программированию</li>
+                <li>Codecademy - интерактивные курсы по программированию</li>
+                <li>Stack Overflow - сообщество разработчиков и база знаний</li>
+            </ul>
+            
+            <h3>Будущее веб-разработки</h3>
+            <p>Веб-разработка продолжает развиваться с появлением новых технологий и стандартов. Некоторые из современных тенденций включают:</p>
+            
+            <div class="card-container">
+                <div class="card">
+                    <div class="card-content">
+                        <h4>Прогрессивные веб-приложения (PWA)</h4>
+                        <p>Веб-приложения, которые используют современные веб-возможности для предоставления пользовательского опыта, аналогичного нативным приложениям.</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-content">
+                        <h4>WebAssembly</h4>
+                        <p>Бинарный формат и соответствующая виртуальная машина, позволяющая выполнять код на различных языках в веб-браузерах с высокой производительностью.</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-content">
+                        <h4>Искусственный интеллект и машинное обучение</h4>
+                        <p>Интеграция AI и ML в веб-приложения становится все более распространенной с такими библиотеками, как TensorFlow.js.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <footer>
+            <p>© 2023 Огромная HTML-страница. Все права защищены.</p>
+            <p>Это демонстрационная страница, созданная в образовательных целях.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Простой JavaScript для добавления интерактивности
+        document.addEventListener('DOMContentLoaded', function() {
+            // Добавляем класс анимации для всех секций при загрузке
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                section.classList.add('animated');
+            });
+            
+            // Плавная прокрутка для навигационных ссылок
+            document.querySelectorAll('nav a').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // Обработка отправки формы
+            const form = document.querySelector('form');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Форма отправлена! (Это демонстрация, данные никуда не отправляются)');
+                });
+            }
+            
+            // Изменение цвета заголовка при наведении
+            const headings = document.querySelectorAll('h2, h3, h4');
+            headings.forEach(heading => {
+                heading.addEventListener('mouseenter', function() {
+                    this.style.color = '#e74c3c';
+                });
+                
+                heading.addEventListener('mouseleave', function() {
+                    this.style.color = '';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
